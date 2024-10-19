@@ -1,0 +1,10 @@
+/* custom-navigation.module.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.customNavigationMenu {
+  @apply bg-gray-100 shadow-md p-4;
+}
+
