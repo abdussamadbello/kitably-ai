@@ -6,7 +6,7 @@ import prisma from '@/lib/db';
 import bcrypt from 'bcrypt';
 
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -66,7 +66,6 @@ export const authOptions: NextAuthOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
 };
-
 
 export const GET = NextAuth(authOptions);
 export const POST = NextAuth(authOptions);

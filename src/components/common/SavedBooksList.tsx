@@ -29,13 +29,16 @@ interface SavedBooksListProps {
 
 const SavedBooksList: React.FC<SavedBooksListProps> = ({ books = [], className = "" }) => {
   const router = useRouter();
-  const [analyzingBooks, setAnalyzingBooks] = useState<Set<number>>(new Set());
+  const [analyzingBookIds, setAnalyzingBookIds] = useState<number[]>([]);
   const [errors, setErrors] = useState<Map<number, string>>(new Map());
 
   const handleAnalyzeBook = async (bookId: number) => {
-    setAnalyzingBooks(prev => new Set([...prev, bookId]));
-    setErrors(prev => {
-      const newErrors = new Map(prev);
+    // Add bookId to analyzing list using functional update
+    setAnalyzingBookIds(prevIds => [...prevIds, bookId]);
+    
+    // Clear any existing errors for this book
+    setErrors(prevErrors => {
+      const newErrors = new Map(prevErrors);
       newErrors.delete(bookId);
       return newErrors;
     });
@@ -51,15 +54,13 @@ const SavedBooksList: React.FC<SavedBooksListProps> = ({ books = [], className =
       
     } catch (error) {
       console.error(`Error analyzing book ${bookId}:`, error);
-      setErrors(prev => new Map(prev).set(bookId, 
+      setErrors(prevErrors => new Map(prevErrors).set(
+        bookId,
         error instanceof Error ? error.message : "An error occurred while analyzing the book"
       ));
     } finally {
-      setAnalyzingBooks(prev => {
-        const newSet = new Set(prev);
-        newSet.delete(bookId);
-        return newSet;
-      });
+      // Remove bookId from analyzing list using functional update
+      setAnalyzingBookIds(prevIds => prevIds.filter(id => id !== bookId));
     }
   };
 
@@ -86,7 +87,7 @@ const SavedBooksList: React.FC<SavedBooksListProps> = ({ books = [], className =
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>No Books Found</AlertTitle>
           <AlertDescription>
-            You haven't saved any books yet. Start by adding some books to your collection.
+            You haven&#39;t saved any books yet. Start by adding some books to your collection.
           </AlertDescription>
         </Alert>
       </div>
@@ -102,7 +103,7 @@ const SavedBooksList: React.FC<SavedBooksListProps> = ({ books = [], className =
       
         <div className="grid gap-4">
           {books.map((book) => {
-            const isAnalyzing = analyzingBooks.has(book.bookId);
+            const isAnalyzing = analyzingBookIds.includes(book.bookId);
             const error = errors.get(book.bookId);
             
             return (

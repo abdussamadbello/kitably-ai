@@ -8,18 +8,17 @@ import { Loader2 } from "lucide-react";
 
 interface ProtectedLayoutProps {
   children: React.ReactNode;
-  // Array of paths that don't require authentication
-  publicPaths?: string[];
 }
 
 export default function ProtectedLayout({ 
-  children 
+  children, 
 }: ProtectedLayoutProps) {
-  const publicPaths = ["/auth/signin", "/auth/signup"];
   const router = useRouter();
   const pathname = usePathname();
   const { status } = useSession();
 
+  // Define public paths internally
+  const publicPaths = ["/auth/signin", "/auth/signup"];
   const isPublicPath = publicPaths.includes(pathname);
 
   // Effect for handling authentication

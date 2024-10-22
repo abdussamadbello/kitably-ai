@@ -1,7 +1,7 @@
 import prisma from "@/lib/db";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { GET as handler } from "@/app/api/auth/[...nextauth]/route";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const session = await getServerSession(authOptions);
+    const session: { user?: { email?: string } } | null = await getServerSession(handler);
     if (!session || !session.user?.email) {
       return NextResponse.json({ error: "Unauthorized. Please sign in to save the book." }, { status: 401 });
     }
@@ -44,9 +44,9 @@ export async function GET(request: Request) {
   const url = new URL(request.url);
   const bookId = url.searchParams.get("id");
 
-  const session = await getServerSession(authOptions);
+  const session: { user?: { email?: string } } | null = await getServerSession(handler);
   if (!session || !session.user?.email) {
-    return NextResponse.json({ error: "Unauthorized. Please sign in to access books." }, { status: 401 });
+    return NextResponse.json({ error: "Unauthorized. Please sign in to save the book." }, { status: 401 });
   }
 
   try {
