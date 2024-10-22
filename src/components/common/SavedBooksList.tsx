@@ -85,7 +85,7 @@ const SavedBooksList: React.FC<SavedBooksListProps> = ({ books = [], className =
       <div className="w-full p-4">
         <Alert>
           <AlertCircle className="h-4 w-4" />
-          <AlertTitle>No Books Found</AlertTitle>
+          <AlertTitle> No Books Found </AlertTitle>
           <AlertDescription>
             You haven&#39;t saved any books yet. Start by adding some books to your collection.
           </AlertDescription>
