@@ -14,7 +14,7 @@ This project leverages Gutenberg book data and LangChain to answer questions bas
   - [Fetching Gutenberg Book Data](#fetching-gutenberg-book-data)
   - [Processing with LangChain](#processing-with-langchain)
   - [Answering Questions](#answering-questions)
-- [Using Shad CDN](#using-shad-cdn)
+- [Using Shadcn UI](#using-shadcn-ui)
 - [Using NextAuth for Registration and Login](#using-nextauth-for-registration-and-login)
 
 ## Introduction
@@ -83,8 +83,8 @@ The file `src/utils/analyzeText.ts` integrates LangChain to process the fetched 
 ### Answering Questions
 Once the book content is processed, users can ask questions about the book. The LangChain model is used to generate answers based on the processed content.
 
-## Using Shad CDN
-Shad CDN is used to efficiently deliver static assets and improve the performance of the application. The CDN ensures that content is delivered quickly and reliably to users around the world.
+## Using Shadcn UI
+Shadcn UI is a component library designed to help developers build user interfaces quickly and efficiently. It provides a collection of pre-built, customizable UI components that can be easily integrated into your React projects.
 
 ## Using NextAuth for Registration and Login
 NextAuth is used for secure user authentication. It provides a robust and flexible authentication system that supports various providers. Users can register and log in to the application, ensuring that their interactions with the book content are personalized and secure.
