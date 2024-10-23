@@ -8,6 +8,7 @@ This project leverages Gutenberg book data and LangChain to answer questions bas
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Production](#production)
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
 - [How We Use Gutenberg Book Data and LangChain](#how-we-use-gutenberg-book-data-and-langchain)
@@ -52,6 +53,13 @@ This project is designed to fetch book data from Project Gutenberg and use LangC
 3. Register a new user or login with `bello@bello.com` as username and password.
 4. Use the interface to search book data from Project Gutenberg.
 5. Preview the book then save the book
+
+## Production
+1. Access the application at [https://kitably-ai.vercel.app/](https://kitably-ai.vercel.app/).
+2. Register a new user or login with `bello@bello.com` as username and password.
+3. Use the interface to search book data from Project Gutenberg.
+4. Preview the book then save the book
+
 
 ## Project Structure
 - `.next`: Contains the build output of the Next.js application.
