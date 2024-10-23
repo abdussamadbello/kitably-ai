@@ -25,7 +25,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Initialize the LLM
     const model = new ChatOpenAI({
       modelName: "gpt-4",
     });

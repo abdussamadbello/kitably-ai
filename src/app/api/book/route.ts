@@ -79,7 +79,7 @@ export async function GET(request: Request) {
         },
       },
       include: {
-        analysis: true, // Include analysis if available
+        analysis: true, 
       },
     });
 
